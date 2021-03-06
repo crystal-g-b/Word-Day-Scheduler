@@ -1,3 +1,7 @@
+var rowEl = $('#time-block');
+var timeEl = $('#hour');
+
+
 //button
     //gete a ref to all of thr save buttons $('.saveBtn)
     //in activity 1 and 2
