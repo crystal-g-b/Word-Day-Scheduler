@@ -1,8 +1,5 @@
-var rowEl = $('#time-block');
-var timeEl = $('#hour');
 //get a ref to all of the save buttons $('.saveBtn)
 var saveEl = $('.saveBtn');
-var toDoEl =$('.description');
 
 //current day -> top of calendar
     //use moment library - .format()
@@ -22,11 +19,13 @@ var toDoEl =$('.description');
 //handle color coding
 //use the moment library to get the current hour 
     function colorCode() {
-        var currentHour = moment().hours();
+        var currentHour = moment().hour();
 //get a reference to all time blocks
  //loop through time blocks- ref unit 3
         $('.time-block').each(function() {
-            var timeSlot = parseInt($(this).attr('.id').split('hour')[1]);
+ //get the data hour value timeblocks[i].data('hour')
+            var timeSlot = parseInt($(this).attr('id').split('hour')[1]);
+            console.log(timeSlot, currentHour)
 //we need an if else statement- condition we compare the current hour with the timeblock " <, ===, >"- ref unit 3
 //adding or removing  (or both) classes
             if (timeSlot < currentHour) {
@@ -44,13 +43,7 @@ var toDoEl =$('.description');
         });
       
     }
-
-
     
-   
-    //get the data hour value timeblocks[i].data('hour')
-    
-
 //get the data from localstorage and populate the timeblocks
     //getItem
     //reference to the textarea (id)
@@ -58,13 +51,20 @@ var toDoEl =$('.description');
     //approach -. use jquery $('textarea'); -> loop -> 
     // -> get a ref to id of .parent()
     //.val() = localStorage.getItem(pass in the parent id)
-
-
+    $('#9am .description').val(localStorage.getItem('9am'));
+    $('#10am .description').val(localStorage.getItem('10am'));
+    $('#11am .description').val(localStorage.getItem('11am'));
+    $('#12am .description').val(localStorage.getItem('12am'));
+    $('#13am .description').val(localStorage.getItem('13am'));
+    $('#14am .description').val(localStorage.getItem('14am'));
+    $('#15am .description').val(localStorage.getItem('15am'));
+    $('#16am .description').val(localStorage.getItem('16am'));
+    $('#16am .description').val(localStorage.getItem('16am'));
 
 //call the color coding function
     colorCode();
 
 //setInterval -> 15000(every 15secs)
+var interval = setInterval(colorCode, 15000);
 
-saveEl.addEventListener("click", submitTasks);
 
